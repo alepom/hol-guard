@@ -24,7 +24,6 @@ from ..blocked_request_mode import BLOCKED_REASON, safe_alternative_reason
 from ..native_hook_decision import NativeHookDecisionError, native_review_response
 from ..native_hook_render import (
     native_render_accepted_allow,
-    native_render_fail_closed_response,
     native_render_fail_closed_verdict,
     native_render_pre_tool,
     native_render_recording_only_pre_tool,
