@@ -96,6 +96,41 @@ Older releases are preserved in the [changelog archive](docs/changelog-archive.m
 * **native:** a package-intent parse now sends the caller's `PATH` to the resident. The resident is long-lived, so its own `PATH` is the one it was spawned with; a manager it cannot resolve (`npx` from a test or tool directory) made the TypeScript launch evidence incomplete and sent a contained typecheck back to review even though the caller resolved the manager fine.
 * **native:** a resident that answers a context-digest request with its own error envelope is now reported by that code — and recorded against the resilience breaker — instead of being flattened into `native_context_digest_result_invalid`. An envelope outside the contract keeps its code in the rejection reason, and a rejected result names the contract clause that rejected it with the offending keys, so a foreign frame, a stale frame and a truncated read are no longer indistinguishable.
 
+## [3.62.0](https://github.com/hashgraph-online/hol-guard/compare/v3.61.0...v3.62.0) (2026-11-23)
+
+
+### Features
+
+* **mcp-servers:** add Context Pill MCP contribution ([#8434](https://github.com/hashgraph-online/hol-guard/issues/8434)) ([3d7996a](https://github.com/hashgraph-online/hol-guard/commit/3d7996a015d53daa13741958ef6f35882709e8e7))
+
+
+### Bug Fixes
+
+* **codex:** route Linux read-only containment to the sandbox instead of blocking ([#8455](https://github.com/hashgraph-online/hol-guard/issues/8455)) ([bd23425](https://github.com/hashgraph-online/hol-guard/commit/bd23425164010b9da0547cd9f59ddcc422207eef))
+* **codex:** run contained calls inside Codex's Linux sandbox behind a kernel check ([#8460](https://github.com/hashgraph-online/hol-guard/issues/8460)) ([5243179](https://github.com/hashgraph-online/hol-guard/commit/5243179c19044cf1cbdf2417c3d85095f6bb22f0))
+* **contain:** keep a sibling run list contained when a stage reshapes its output ([#8370](https://github.com/hashgraph-online/hol-guard/issues/8370)) ([1e50030](https://github.com/hashgraph-online/hol-guard/commit/1e50030014ac8b4768be393fc1358b65a0222155))
+* **gauntlet:** rerun a case whose worker died instead of ending the attempt ([#8444](https://github.com/hashgraph-online/hol-guard/issues/8444)) ([6653808](https://github.com/hashgraph-online/hol-guard/commit/6653808efc9537515ce7be6f734fd1e2321b002e))
+* **guard:** answer cargo's two manifest questions inside the sandbox ([#8390](https://github.com/hashgraph-online/hol-guard/issues/8390)) ([e93e87a](https://github.com/hashgraph-online/hol-guard/commit/e93e87a25738d49f9636a4e136832d8dada7cea5))
+* **guard:** contain a sibling checkout's run list when a `;` joins it ([#8417](https://github.com/hashgraph-online/hol-guard/issues/8417)) ([27ce316](https://github.com/hashgraph-online/hol-guard/commit/27ce31637a91193e936480cd35b48be686b5c891))
+* **guard:** let Oh My Pi tool commands run in their own shell ([#8446](https://github.com/hashgraph-online/hol-guard/issues/8446)) ([95faa4a](https://github.com/hashgraph-online/hol-guard/commit/95faa4aab249bd1ac2da84557994a83fa4df9133))
+* **guard:** read a descriptor sink inside a command group as written ([#8449](https://github.com/hashgraph-online/hol-guard/issues/8449)) ([11414a7](https://github.com/hashgraph-online/hol-guard/commit/11414a75792ebf7a1196cf6052ac227f0ec6fe61))
+* **guard:** read a package runner's own directory flag ([#8442](https://github.com/hashgraph-online/hol-guard/issues/8442)) ([1c4ee5f](https://github.com/hashgraph-online/hol-guard/commit/1c4ee5f43bf3f0aadab54039d105daa1abd1ce74))
+* **guard:** read a POSIX character class in an awk regular expression ([#8395](https://github.com/hashgraph-online/hol-guard/issues/8395)) ([9a7a5ea](https://github.com/hashgraph-online/hol-guard/commit/9a7a5ea05f5b4fecf07d23c8e28a5b0cf3406b86))
+* **guard:** read a property list with plutil past review ([#8349](https://github.com/hashgraph-online/hol-guard/issues/8349)) ([03896ac](https://github.com/hashgraph-online/hol-guard/commit/03896ac33dba887c5f89f23b2a4e178974080533))
+* **guard:** read a shortlog narrowed to recent commits ([#8374](https://github.com/hashgraph-online/hol-guard/issues/8374)) ([335a484](https://github.com/hashgraph-online/hol-guard/commit/335a4844a44b363b506f008076507f1cc69eed5f))
+* **guard:** read a workspace package's shared tsconfig base ([#8440](https://github.com/hashgraph-online/hol-guard/issues/8440)) ([28530f8](https://github.com/hashgraph-online/hol-guard/commit/28530f8d6a35f087e3c9e32117f8cf28b1d9ae32))
+* **guard:** read a YAML document with yq past review ([#8346](https://github.com/hashgraph-online/hol-guard/issues/8346)) ([3db9e04](https://github.com/hashgraph-online/hol-guard/commit/3db9e0455306a2cb444b2d62f04fca42408288b3))
+* **guard:** read package manifests across a toolchain's global modules ([#8452](https://github.com/hashgraph-online/hol-guard/issues/8452)) ([a734772](https://github.com/hashgraph-online/hol-guard/commit/a73477297500add2b3bc0864c267375771bcc474))
+* **guard:** read the Go toolchain queries Guard already reads for cargo ([#8404](https://github.com/hashgraph-online/hol-guard/issues/8404)) ([9a415fa](https://github.com/hashgraph-online/hol-guard/commit/9a415fa44e2aafaa37dff8f3b59b825512b8ced1))
+* **guard:** read the two change listings Git already proves for log ([#8388](https://github.com/hashgraph-online/hol-guard/issues/8388)) ([2d5a0c5](https://github.com/hashgraph-online/hol-guard/commit/2d5a0c500808a8c28ae98b6a268eb6c79b3bdde5))
+* **guard:** resolve package-manager launcher paths without a review ([#8429](https://github.com/hashgraph-online/hol-guard/issues/8429)) ([1d8e51a](https://github.com/hashgraph-online/hol-guard/commit/1d8e51af65d9d1b796f147429fcecd45b88322d2))
+* **shell:** keep reading through text filters before a verified cd ([#8384](https://github.com/hashgraph-online/hol-guard/issues/8384)) ([1c5db6a](https://github.com/hashgraph-online/hol-guard/commit/1c5db6a67b6e2bb533b7b5e258bf8a1888327116))
+
+
+### Performance Improvements
+
+* **ci:** use thin LTO for stable release builds ([#8448](https://github.com/hashgraph-online/hol-guard/issues/8448)) ([50595cc](https://github.com/hashgraph-online/hol-guard/commit/50595cc7726460ab2d6c01bf037cd550399850b0))
+
 ## [3.61.0](https://github.com/hashgraph-online/hol-guard/compare/v3.60.0...v3.61.0) (2026-11-23)
 
 
